@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EmpService } from '../emp.service';
 
@@ -8,8 +8,10 @@ import { EmpService } from '../emp.service';
   templateUrl: './emp-new.component.html',
   styleUrls: ['./emp-new.component.css']
 })
-export class EmpNewComponent implements OnInit {
+export class EmpNewComponent {
   form: FormGroup;
+
+  loading = false;
   constructor(private empService: EmpService, private rout: ActivatedRoute, private router: Router) {
     this.form = new FormGroup({
       'name': new FormControl('', Validators.required),
@@ -31,21 +33,32 @@ export class EmpNewComponent implements OnInit {
         }
       }
     })
-
   }
 
-  ngOnInit() {
+  getform(name: string): AbstractControl {
+    return this.form.controls[name];
   }
+
   save() {
-    console.log(this.form.value)
+    if (this.form.valid == false)
+      return;
+    this.loading = true;
     if (this.form.value.id) {
       this.empService.update(this.form.value).subscribe({
-        next: () => this.back()
-      })
+        next: () => this.back(),
+        complete: () => {
+          this.loading = false
+        }
+
+      }
+      )
     }
     else {
       this.empService.add(this.form.value).subscribe({
-        next: () => this.back()
+        next: () => this.back(),
+        complete: () => {
+          this.loading = false
+        }
       })
     }
   }

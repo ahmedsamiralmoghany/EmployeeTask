@@ -22,11 +22,13 @@ export class EmloyeeComponent implements OnInit {
     this.router.navigate(['emp-edit', id]);
   }
   delte(id: number, index: number) {
-    this.empService.delete(id).subscribe({
-      next: () => {
-        this.employees.splice(index, 1);
-      }
-    })
+    if (window.confirm('Are sure you want to delete this item ?')) {
+      this.empService.delete(id).subscribe({
+        next: () => {
+          this.employees.splice(index, 1);
+        }
+      })
+    }
   }
 
 }

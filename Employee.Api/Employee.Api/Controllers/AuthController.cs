@@ -20,9 +20,14 @@ namespace Employee.Api.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login(UserForRegister userForlogin)
         {
+            if (string.IsNullOrWhiteSpace(userForlogin.UserName) || string.IsNullOrWhiteSpace(userForlogin.Password))
+            {
+                return Unauthorized("you must write username and password");
+
+            }
             var user = await _authRepo.Login(userForlogin.UserName, userForlogin.Password);
             if (user == null)
-                return Unauthorized();
+                return Unauthorized("Username or Password Not Correct");
             var authClaims = new List<Claim>
                 {
                     new Claim(ClaimTypes.Name, user.Id.ToString()),

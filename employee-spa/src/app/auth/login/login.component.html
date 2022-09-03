@@ -1,21 +1,28 @@
-<div class="container ">
+<div class="main-container">
 
-  <div class="card" style="margin:auto ;">
+  <div class="card center" style="margin:auto ;">
 
     <form class="formGroup" class="row" [formGroup]="form" (ngSubmit)="login()">
 
-      <div class="mb-3">
-        <label for="userName" class="form-label">User Name</label>
+      <div class="mb-3 mt-5">
+        <label for="userName" class="form-label">user name</label>
 
         <input type="text" id="userName" class="form-control form-control-lg" formControlName="userName">
+        <span *ngIf="getform('userName').errors&&getform('userName').touched" class="danger">
+          user name is required
+        </span>
       </div>
       <div class="mb-3">
         <label for="password" class="form-label">password</label>
         <input type="password" class="form-control form-control-lg" formControlName="password">
+        <span *ngIf="getform('password').errors&&getform('password').touched" class="danger">
+          password is required
+        </span>
       </div>
       <div class="mb-3 row" style="justify-content:center ;">
-        <button type="button" (click)="register()" class="btn btn-secondary m-2 col col-5">Register</button>
-        <button type="submit" class="btn btn-primary m-2 col col-5">Login</button>
+        <button [disabled]="form.valid==false||loading" type="submit"
+          class="btn btn-secondary m-2 col col-8  {{loading?'spinner-border':''}}"> {{loading?'': 'Login'}}</button>
+        <span>not member <a routerLink="/auth/register">Register</a></span>
       </div>
     </form>
   </div>

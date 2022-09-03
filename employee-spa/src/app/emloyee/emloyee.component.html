@@ -1,49 +1,54 @@
-<div class="container">
-  <div>
-    <ion-icon name="add" class="primary m-20" routerLink="/emp-add">New Employee</ion-icon>
-  </div>
-  <div class="row header">
-    <div class="col col-2">
-      <p class="title"> name </p>
+<div class="main-container">
+
+  <div class="container ">
+    <div class="">
+      <h2 class="page-title">Employees
+        <ion-icon name="add" class="primary m-20" routerLink="/emp-add">New Employee</ion-icon>
+      </h2>
     </div>
-    <div class="col col-2">
-      <p class="title"> phoneNumber </p>
-    </div>
-    <div class="col col-2">
-      <p class="title"> address </p>
-    </div>
-    <div class="col col-2">
-      <p class="title"> email </p>
-    </div>
-    <div class="col col-2">
-      <p class="title"> birthDate </p>
-    </div>
-     <div class="col col-2">
-      <p class="title"> Actions </p>
-    </div>
+    <div class="row header">
+      <div class="col col-2">
+        <p class="title"> name </p>
+      </div>
+      <div class="col col-2">
+        <p class="title"> phone number </p>
+      </div>
+      <div class="col col-2">
+        <p class="title"> address </p>
+      </div>
+      <div class="col col-2">
+        <p class="title"> email </p>
+      </div>
+      <div class="col col-2">
+        <p class="title"> birth date </p>
+      </div>
+      <div class="col col-1">
+        <p class="title"> Actions </p>
+      </div>
 
 
-  </div>
-  <div class="card m-2" *ngFor="let emp of employees;let i =index">
-    <div class="row ">
-      <div class="m-1 col col-2">
-        <p> {{emp.name}} </p>
-      </div>
-      <div class="m-1 col col-2">
-        <p> {{emp.phoneNumber}} </p>
-      </div>
-      <div class="m-1 col col-2">
-        <p> {{emp.address}} </p>
-      </div>
-      <div class="m-1 col col-2">
-        <p> {{emp.email}} </p>
-      </div>
-      <div class="m-1 col col-2">
-        <p> {{ emp.birthDate?(emp.birthDate|date:'yyyy-MM-dd'):''}} </p>
-      </div>
-      <div class="m-1 col col-1">
-        <ion-icon class="primary " name="create-outline" (click)="edit(emp.id)">edit</ion-icon>
-        <ion-icon name="trash" class="danger" (click)="delte(emp.id,i)">delete</ion-icon>
+    </div>
+    <div class="card m-2" *ngFor="let emp of employees;let i =index">
+      <div class="row ">
+        <div class="m-1 col col-2">
+          <p> {{emp.name}} </p>
+        </div>
+        <div class="m-1 col col-2">
+          <p> {{emp.phoneNumber}} </p>
+        </div>
+        <div class="m-1 col col-2">
+          <p> {{emp.address}} </p>
+        </div>
+        <div class="m-1 col col-2">
+          <p> <a href="#">{{emp.email}} </a></p>
+        </div>
+        <div class="m-1 col col-2">
+          <p> {{ emp.birthDate?(emp.birthDate|date:'yyyy-MM-dd'):''}} </p>
+        </div>
+        <div class="m-1 col col-1">
+          <ion-icon class="primary " name="create-outline" (click)="edit(emp.id)">edit</ion-icon>
+          <ion-icon name="trash" class="danger" (click)="delte(emp.id,i)">delete</ion-icon>
+        </div>
       </div>
     </div>
   </div>

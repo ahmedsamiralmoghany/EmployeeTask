@@ -1,31 +1,44 @@
-<div class="container ">
+<div class="main-container">
 
-  <div class="card" style="margin:auto ;">
+  <div class="card center">
 
-    <form class="row" [formGroup]="form" (ngSubmit)="register()">
+    <form [formGroup]="form" (ngSubmit)="register()">
 
-      <div class="mb-3">
+      <div class="mb-3 mt-5">
         <label for="userName" class="form-label">User Name</label>
-
         <input type="text" id="userName" class="form-control form-control-lg" formControlName="userName">
+        <span *ngIf="getform('userName').errors&&getform('userName').touched" class="danger">
+          user name is required
+        </span>
       </div>
       <div class="mb-3">
         <label for="password" class="form-label">password</label>
-        <input type="password" class="form-control form-control-lg" formControlName="password">
+        <input type="password" id="password" class="form-control form-control-lg" formControlName="password">
+        <span *ngIf="getform('password').errors&&getform('password').touched" class="danger">
+          password is required
+        </span>
       </div>
-      <div>
+      <div class="mb-3">
         <label for="Confirmpassword" class="form-label">Confirm password</label>
         <input type="password" id="Confirmpassword" class="form-control form-control-lg"
           formControlName="confirmPassword">
+        <span *ngIf="getform('confirmPassword').errors&&getform('confirmPassword').touched" class="danger">
+          password is required
+          <br>
+        </span>
+        <span class="danger" *ngIf="getform('confirmPassword').errors
+          &&getform('confirmPassword').touched&&form.errors&&form.errors['notSame']==true">not
+          matched</span>
       </div>
       <div class="mb-3 row" style="justify-content:center ;">
-        <button type="submit" class="btn btn-secondary m-2 col col-8">Register</button>
+        <button [disabled]="form.valid==false||loading" type="submit"
+          class="btn btn-secondary m-2 col col-8 {{loading?'spinner-border':''}} ">{{loading?'': 'Register'}} </button>
       </div>
       <div class="mb-3 row" style="justify-content:center ;">
-        <span> have account</span>
-        <button type="button" (click)="Login()" class=" btn btn-primary m-2 col col-2">Login</button>
+        <span> have account?<a routerLink="/auth/login">Login</a></span>
+      </div>
 
-      </div>
+
     </form>
   </div>
 </div>
