@@ -29,7 +29,7 @@ namespace Employee.Api.Controllers
                 };
             var token = _authRepo.GetToken(authClaims);
 
-            return Ok(new JwtSecurityTokenHandler().WriteToken(token));
+            return Ok(new { token = new JwtSecurityTokenHandler().WriteToken(token) });
         }
         [HttpPost("register")]
         public async Task<IActionResult> Register(UserForRegister userForRegister)
@@ -37,7 +37,7 @@ namespace Employee.Api.Controllers
             var registerd = await _authRepo.Register(userForRegister.UserName, userForRegister.Password);
             if (registerd)
                 return Ok();
-            return BadRequest();
+            return BadRequest("user Exist");
         }
 
 

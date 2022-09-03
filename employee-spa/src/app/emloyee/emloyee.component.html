@@ -1,0 +1,7 @@
+<div *ngFor="let emp of employees;let i =index">
+  <p>
+    {{emp.name}}
+  </p>
+  <button (click)="edit(emp.id)">edit</button>
+  <button (click)="delte(emp.id,i)">delete</button>
+</div>
