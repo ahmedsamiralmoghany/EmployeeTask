@@ -1,12 +1,14 @@
 ﻿using AutoMapper;
 using Employee.Api.Dto;
 using Employee.Api.Repository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Employee.Api.Controllers
 {
     [ApiController]
     [Route("[controller]")]
+    [Authorize]
     public class EmployeeController : ControllerBase
     {
         private readonly IEmployeeRepo _employeeRepo;
@@ -38,6 +40,11 @@ namespace Employee.Api.Controllers
         public async Task<IActionResult> AddEmployee(EmployeeDto employeeDto)
         {
             var employee = _mapper.Map<Data.Model.Employee>(employeeDto);
+            var userid = int.Parse(HttpContext.User.Identity.Name);
+
+            employee.CreatedById = userid;
+            employee.CreatedDate = DateTime.Now;
+
             await _employeeRepo.AddEmployee(employee);
             await _employeeRepo.Save();
             return Ok(employee);
@@ -49,6 +56,8 @@ namespace Employee.Api.Controllers
             if (employee == null)
                 return BadRequest("Employee Not Found");
             _mapper.Map(employeeDto, employee);
+
+
             _employeeRepo.EditEmployee(employee);
             await _employeeRepo.Save();
 

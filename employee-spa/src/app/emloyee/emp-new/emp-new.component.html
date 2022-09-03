@@ -1,4 +1,30 @@
-<div  [formGroup]="form" (ngSubmit)="save()">
-  <input type="text" formControlName="name">
-  <button type="submit" (click)="save()">save</button>
-</div>
+<form class="form-group m-auto container" [formGroup]="form" (ngSubmit)="save()">
+  <div class="m-3">
+
+    <label for="name" class="form-label">user name</label>
+    <input type="text" id="name" class="form-control form-control-lg" formControlName="name">
+
+  </div>
+  <div class="m-3">
+
+    <label for="phoneNumber" class="form-label">phone number</label>
+    <input type="text" id="phoneNumber" class="form-control form-control-lg" formControlName="phoneNumber">
+  </div>
+  <div class="m-3">
+    <label for="address" class="form-label">address</label>
+    <input type="text" id="address" class="form-control form-control-lg" formControlName="address">
+  </div>
+
+  <div class="m-3">
+    <label for="email" id="email" class="form-label">email</label>
+    <input type="email" class="form-control form-control-lg" formControlName="email">
+  </div>
+
+  <div class="m-3">
+    <label for="birthDate" class="form-label">birth date</label>
+    <input type="datetime" id="birthDate" class="form-control form-control-lg" formControlName="birthDate">
+  </div>
+  <div class="m-3">
+    <button type="submit" class="btn btn-primary m-2">save</button>
+    <button type="button" class="btn btn-secondary m-2" (click)="back()">cancel</button>
+  </div>

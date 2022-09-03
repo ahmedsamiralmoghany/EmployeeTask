@@ -1,7 +1,50 @@
-<div *ngFor="let emp of employees;let i =index">
-  <p>
-    {{emp.name}}
-  </p>
-  <button (click)="edit(emp.id)">edit</button>
-  <button (click)="delte(emp.id,i)">delete</button>
+<div class="container">
+  <div>
+    <ion-icon name="add" class="primary m-20" routerLink="/emp-add">New Employee</ion-icon>
+  </div>
+  <div class="row header">
+    <div class="col col-2">
+      <p class="title"> name </p>
+    </div>
+    <div class="col col-2">
+      <p class="title"> phoneNumber </p>
+    </div>
+    <div class="col col-2">
+      <p class="title"> address </p>
+    </div>
+    <div class="col col-2">
+      <p class="title"> email </p>
+    </div>
+    <div class="col col-2">
+      <p class="title"> birthDate </p>
+    </div>
+     <div class="col col-2">
+      <p class="title"> Actions </p>
+    </div>
+
+
+  </div>
+  <div class="card m-2" *ngFor="let emp of employees;let i =index">
+    <div class="row ">
+      <div class="m-1 col col-2">
+        <p> {{emp.name}} </p>
+      </div>
+      <div class="m-1 col col-2">
+        <p> {{emp.phoneNumber}} </p>
+      </div>
+      <div class="m-1 col col-2">
+        <p> {{emp.address}} </p>
+      </div>
+      <div class="m-1 col col-2">
+        <p> {{emp.email}} </p>
+      </div>
+      <div class="m-1 col col-2">
+        <p> {{ emp.birthDate?(emp.birthDate|date:'yyyy-MM-dd'):''}} </p>
+      </div>
+      <div class="m-1 col col-1">
+        <ion-icon class="primary " name="create-outline" (click)="edit(emp.id)">edit</ion-icon>
+        <ion-icon name="trash" class="danger" (click)="delte(emp.id,i)">delete</ion-icon>
+      </div>
+    </div>
+  </div>
 </div>

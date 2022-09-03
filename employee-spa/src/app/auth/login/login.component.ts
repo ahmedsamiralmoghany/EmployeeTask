@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { AuthService } from '../auth.service';
 })
 export class LoginComponent implements OnInit {
   form: FormGroup;
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService, private router: Router) {
     this.form = new FormGroup({
       'userName': new FormControl(),
       'password': new FormControl()
@@ -22,10 +23,9 @@ export class LoginComponent implements OnInit {
     console.log(this.form.value)
 
     this.authService.login(this.form.value.userName, this.form.value.password).subscribe({
-      next(res) {
-        console.log(res.token)
+      next: (res) => {
         localStorage.setItem('token', res.token);
-
+        this.router.navigate(['emp'])
       },
       error(err) {
         alert(err);
@@ -33,8 +33,9 @@ export class LoginComponent implements OnInit {
 
       }
     }
-
-
     )
+  }
+  register() {
+    this.router.navigate(['auth/register'])
   }
 }

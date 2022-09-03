@@ -26,13 +26,17 @@ export class AuthComponent implements OnInit {
 
     this.authService.register(this.form.value.userName, this.form.value.password).subscribe({
       next: () => {
-        this.router.navigate(['auth/login'])
+        this.Login()
       },
       error(e) {
         alert(e.error);
       }
     }
     )
+  }
+  Login() {
+    this.router.navigate(['auth/login'])
+
   }
 
 }

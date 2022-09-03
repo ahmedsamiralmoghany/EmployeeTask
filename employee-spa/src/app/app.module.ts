@@ -4,6 +4,9 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { IonicModule } from '@ionic/angular';
+import { AuthGard } from './auth-gard';
+import { JWTInterceptor } from './jwt-interceptor';
 
 @NgModule({
   declarations: [
@@ -12,9 +15,14 @@ import { AppComponent } from './app.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    IonicModule.forRoot()
   ],
-  providers: [],
+  providers: [AuthGard,
+
+    { provide: HTTP_INTERCEPTORS, useClass: JWTInterceptor, multi: true }
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

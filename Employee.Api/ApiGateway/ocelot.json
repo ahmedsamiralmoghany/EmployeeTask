@@ -1,0 +1,58 @@
+{
+  "GlobalConfiguration": {
+    "BaseUrl": "https://localhost:5003"
+
+  },
+  "Routes": [
+
+    {
+      "UpstreamPathTemplate": "/gateway/employee",
+      "UpstreamHttpMethod": [ "Get" ],
+      "DownstreamPathTemplate": "/employee",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5001
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/employee",
+      "UpstreamHttpMethod": [ "Post" ],
+      "DownstreamPathTemplate": "/employee",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5001
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/employee",
+      "UpstreamHttpMethod": [ "put" ],
+      "DownstreamPathTemplate": "/employee",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5001
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/employee/{id}",
+      "UpstreamHttpMethod": [ "Get", "Delete" ],
+      "DownstreamPathTemplate": "/employee/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5001
+        }
+      ]
+    }
+    
+  ]
+}

@@ -1,0 +1,23 @@
+.danger{
+    color: rgba(175, 38, 38, 0.679);
+    cursor: pointer;
+    font-size: x-large;
+
+}
+.primary{
+    color: blue;
+    font-size: x-large;
+    cursor: pointer;
+
+}
+.title{
+    font-size: x-large;
+}
+p{
+    font-weight: bold;
+}
+.header{
+    background-color: #eeeeee;
+    border-radius: 10px;
+    margin: 10px;
+}
