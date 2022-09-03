@@ -5,7 +5,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { IonicModule } from '@ionic/angular';
-import { AuthGard } from './auth-gard';
+import { AuthGuard } from './auth-gard';
 import { JWTInterceptor } from './jwt-interceptor';
 
 @NgModule({
@@ -18,7 +18,7 @@ import { JWTInterceptor } from './jwt-interceptor';
     HttpClientModule,
     IonicModule.forRoot()
   ],
-  providers: [AuthGard,
+  providers: [AuthGuard,
 
     { provide: HTTP_INTERCEPTORS, useClass: JWTInterceptor, multi: true }
 
